@@ -30,3 +30,10 @@ let findLength = function(s) {
     
     return ans;
 }
+
+
+/*
+ this problem runs in O(n)O(n) time, where nn is the length of s, as the work done in each loop iteration is 
+ amortized constant. Only a few integer variables are used as well, which means this algorithm uses O(1) 
+ space.
+*/

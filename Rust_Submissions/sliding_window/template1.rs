@@ -40,3 +40,7 @@ function fn(arr):
 
         Do some logic to update the answer
 */
+
+fn main() {
+    println!("Hello Rustaceans!");
+}

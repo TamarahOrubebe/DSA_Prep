@@ -24,3 +24,7 @@ function fn(arr):
             3. Both left++ and right--
 
 */
+
+fn main() {
+    println!("Hello Rustaceans!");
+}

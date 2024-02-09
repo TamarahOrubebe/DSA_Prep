@@ -30,3 +30,7 @@ function fn(arr, k):
     return ans
 
 */
+
+fn main() {
+    println!("Hello Rustaceans!");
+}

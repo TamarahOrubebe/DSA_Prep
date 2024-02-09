@@ -37,3 +37,7 @@ takes some time to pre-process, it's an investment that will save us a huge amou
 of the algorithm.
 
 */
+
+fn main() {
+    println!("Hello Rustaceans!");
+}

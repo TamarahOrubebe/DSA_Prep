@@ -31,3 +31,7 @@ function fn(arr1, arr2):
         Do some logic here depending on the problem
         j++
 */
+
+fn main() {
+    println!("Hello Rustaceans!");
+}

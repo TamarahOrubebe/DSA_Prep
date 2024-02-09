@@ -45,3 +45,5 @@ fn missing_number(nums: Vec<i32>) -> i32 {
         
     expected_sum - actual_sum
 }
+
+// time complexity is O(n) space complexity is o(1).

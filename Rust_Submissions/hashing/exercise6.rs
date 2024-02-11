@@ -56,4 +56,4 @@ fn max_number_of_balloons(text: String) -> i32 {
        i32::min(i32::min(i32::min(b_count, a_count), i32::min(l_count, o_count)), n_count)
     }
 
-    // time complexity O(n), space complexity O()
+    // time complexity O(n), space complexity O(1)

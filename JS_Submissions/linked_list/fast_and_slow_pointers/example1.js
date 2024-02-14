@@ -51,7 +51,7 @@ Don't forget that when using fast.next.next, you should also make sure fast.next
 
 */
 
-let getMiddle = head => {
+const getMiddle = head => {
     let slow = head;
     let fast = head;
     
@@ -65,5 +65,7 @@ let getMiddle = head => {
 
 // The pointers use O(1) space, and if there are nn nodes in the linked list, the time complexity is O(n)
 // for the traversals.
+
+
 
 

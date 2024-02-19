@@ -43,42 +43,43 @@ Follow up: Could you do it in one pass?
  * @return {ListNode}
  */
 var reverseBetween = function(head, left, right) {
-   if(left == right) {
-       return head;
-   }
-    let curr = head;
-    let prev = null;
-    let idx = 1;
-    let preRevHead = null;
-    let revTail = null;
-    
-    while(idx <= right) {
+   
+        let curr = head;
+        let prev = null;
+        let idx = 1;
+        let preRevHead = null;
+        let revTail = null;
+
         
         while(idx < left) {
+            if(!curr) return head;
             prev = curr;
             curr = curr.next;
             idx++;
-            
-        }
-        if(idx == left) {
-            preRevHead = prev;
-            revTail = curr;
         }
         
-        let nextNode = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = nextNode;
-        idx++;
-    }
+            preRevHead = prev;
+            revTail = curr;
+        
+        while (idx <= right) {
+            let nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+            idx++;
+        }
+       
+
     
-    if(preRevHead) {
-        preRevHead.next = prev
-    } else {
-        head = prev;
-    }
-    revTail.next = curr;
-    
-    return head;
-};
+        if(preRevHead) {
+            preRevHead.next = prev
+        } else {
+            head = prev;
+        }
+        revTail.next = curr;
+
+        return head;
+    };
+
+
 

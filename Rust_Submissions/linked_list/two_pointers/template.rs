@@ -19,3 +19,7 @@ The reason we need the while condition to also check for fast.next is because if
 then fast.next is null, and trying to access fast.next.next would result in an error (you would be doing null.
 next).
 */
+
+fn main() {
+    println!("Hello world!");
+}

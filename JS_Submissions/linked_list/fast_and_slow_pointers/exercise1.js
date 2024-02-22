@@ -36,23 +36,25 @@ The number of nodes in the list is in the range [1, 100].
  * }
  */
 /**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
  * @param {ListNode} head
  * @return {ListNode}
  */
 var middleNode = function(head) {
     let slow = fast = head;
-    let idx = 0; 
+
 
     while(fast && fast.next) {
         slow = slow.next;
         fast = fast.next.next;
-        idx += 2;
     }
-    
-    let len = idx + 1;
-    if(len % 2 == 0) {
-        return slow.next;
-    }
+
     
     return slow;
 };

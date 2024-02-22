@@ -45,23 +45,15 @@ The number of nodes in the list is in the range [1, 100].
 //     }
 //   }
 // }
-impl Solution {
-    pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut slow = &head;
         let mut fast = &head;
-        let mut idx = 0;
         
         while fast.is_some() && fast.as_ref().unwrap().next.is_some() {
             slow = &slow.as_ref().unwrap().next;
             fast = &fast.as_ref().unwrap().next.as_ref().unwrap().next;
-            idx += 2;
-        }
         
-        idx += 1;
-        if idx % 2 == 0 {
-            return slow.as_ref().unwrap().next.clone();
         }
         
         slow.clone()
-    }
 }

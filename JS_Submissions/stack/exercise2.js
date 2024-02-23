@@ -40,26 +40,31 @@ Constraints:
 s contains only lower and upper case English letters.
 */
 
-fn make_good(s: String) -> String {
-    if s.len() <= 1 {
-        return s;
-    }
-    let mut stack = vec![];
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var makeGood = function(s) {
+     if(s.length <= 1) return s;
+    
+    let stack = [];
+    
+    for(const c of s) {
         
-    for c in s.chars() {
-        if stack.is_empty() {
+        if(stack.length < 1) {
             stack.push(c);
             continue;
         }
-          
-        if stack.last().unwrap().to_lowercase().next() == c.to_lowercase().next() && *stack.last().unwrap() != c {
+        const top = stack[stack.length - 1];
+        
+        if(top.toLowerCase() == c.toLowerCase() && top !== c) {
             stack.pop();
         } else {
-            stack.push(c);
+            stack.push(c)
         }
     }
-        
-    stack.into_iter().collect()
+    
+     return stack.join("");
 }
 
-// time and space complexity O(n);
+// Time and space complexity O(n)

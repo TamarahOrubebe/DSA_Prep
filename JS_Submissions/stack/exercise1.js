@@ -40,3 +40,35 @@ path consists of English letters, digits, period '.', slash '/' or '_'.
 path is a valid absolute Unix path.
 */
 
+/**
+ * @param {string} path
+ * @return {string}
+ */
+var simplifyPath = function(path) {
+    let stack = [];
+    let pathArr = path.split("/");
+    
+    
+    
+    for (const c of pathArr) {
+       if(c == "" || c == ".") {
+           continue;
+       }
+        
+        if(c == "..") {
+            if(stack.length) {
+                stack.pop();
+            }
+            
+        } else {
+            stack.push(c);
+        }
+        
+    }
+       
+        
+        return "/" + stack.join("/");
+};
+
+// time and space complexity O(n);
+

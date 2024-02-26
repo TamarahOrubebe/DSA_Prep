@@ -41,25 +41,23 @@ s contains only lower and upper case English letters.
 */
 
 fn make_good(s: String) -> String {
-    if s.len() <= 1 {
-        return s;
-    }
-    let mut stack = vec![];
+   fn make_good(s: String) -> String {
+        let mut stack: Vec<char> = vec![];
         
-    for c in s.chars() {
-        if stack.is_empty() {
-            stack.push(c);
-            continue;
-        }
-          
-        if stack.last().unwrap().to_lowercase().next() == c.to_lowercase().next() && *stack.last().unwrap() != c {
-            stack.pop();
-        } else {
+        for c in s.chars() {
+            if !stack.is_empty() {
+                if stack.last().unwrap() != &c && 
+                stack.last().unwrap().to_lowercase().to_string() == c.to_lowercase().to_string() {
+                    stack.pop();
+                    continue;
+                }
+            }
+            
             stack.push(c);
         }
-    }
         
-    stack.into_iter().collect()
+        stack.into_iter().collect()
+    }
 }
 
 // time and space complexity O(n);

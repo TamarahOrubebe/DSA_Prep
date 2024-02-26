@@ -45,26 +45,19 @@ s contains only lower and upper case English letters.
  * @return {string}
  */
 var makeGood = function(s) {
-     if(s.length <= 1) return s;
+     let stack = [];
     
-    let stack = [];
-    
-    for(const c of s) {
+    for (const c of s) {
+        if(stack.length) {
+            if(stack[stack.length - 1].toLowerCase() == c.toLowerCase() && stack[stack.length - 1] != c) {
+                stack.pop();
+                continue;
+            }
+        } 
         
-        if(stack.length < 1) {
-            stack.push(c);
-            continue;
-        }
-        const top = stack[stack.length - 1];
-        
-        if(top.toLowerCase() == c.toLowerCase() && top !== c) {
-            stack.pop();
-        } else {
-            stack.push(c)
-        }
+        stack.push(c)
     }
-    
-     return stack.join("");
+    return stack.join("");
 }
 
 // Time and space complexity O(n)

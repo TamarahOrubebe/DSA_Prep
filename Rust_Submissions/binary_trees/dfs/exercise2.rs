@@ -33,6 +33,27 @@ The number of nodes in the tree is in the range [2, 5000].
 
 */
 
+// Definition for a binary tree node.
+// #[derive(Debug, PartialEq, Eq)]
+// pub struct TreeNode {
+//   pub val: i32,
+//   pub left: Option<Rc<RefCell<TreeNode>>>,
+//   pub right: Option<Rc<RefCell<TreeNode>>>,
+// }
+// 
+// impl TreeNode {
+//   #[inline]
+//   pub fn new(val: i32) -> Self {
+//     TreeNode {
+//       val,
+//       left: None,
+//       right: None
+//     }
+//   }
+// }
+use std::rc::Rc;
+use std::cell::RefCell;
+
 fn max_ancestor_diff(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         fn dfs(node: &Option<Rc<RefCell<TreeNode>>>, mut min: i32, mut max: i32) -> i32 {
             if let Some(inner_node) = node {

@@ -49,3 +49,5 @@ var minDepth = function(root) {
     if(!left) return right  + 1;
     return left + 1;
 };
+
+// time and space complexities O(n)

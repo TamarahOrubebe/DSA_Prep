@@ -63,3 +63,5 @@ var maxAncestorDiff = function(root) {
     
     return dfs(root, root.val, root.val);
 };
+
+// time and space complexities O(n);

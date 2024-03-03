@@ -29,4 +29,9 @@ let printAllNodes = root => {
 
 Note for JavaScript users: JavaScript doesn't support a built-in efficient queue, but we can work around this 
 by using a second array nextQueue to implement an efficient BFS.
+
+With an efficient queue, the dequeue and enqueue operations are O(1), which means that the time complexity 
+of BFS is the same as DFS. Again, the main idea is that we visit each node only once, so the time complexity is 
+O(n⋅k) where nn is the total number of nodes, and kk is the amount of work we do at each node, 
+usually O(1). Let's look at some example problems.
 */

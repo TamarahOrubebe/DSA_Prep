@@ -38,4 +38,7 @@ var rightSideView = function(root) {
     return ans;
 };
 
-// time and space complexities O(n);
+// This algorithm has a time and space complexity of O(n)O(n) for the same reasons as the algorithms in the 
+// previous article.We visit each node only once and perform a constant amount of work at each node.The queue 
+// could hold up to O(n)O(n) nodes.
+

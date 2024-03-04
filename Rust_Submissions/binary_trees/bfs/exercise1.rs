@@ -1,6 +1,29 @@
 /*
-Just like DFS, the code/implementations for BFS is very similar across different problems. Here is a general 
-format (we're printing the values of the nodes as an example):
+Deepest Leaves Sum
+
+Solution
+Given the root of a binary tree, return the sum of values of its deepest leaves.
+ 
+
+Example 1:
+
+
+Input: root = [1,2,3,4,5,null,6,7,null,null,null,null,8]
+Output: 15
+Example 2:
+
+Input: root = [6,7,8,2,7,1,3,9,null,1,4,null,null,null,5]
+Output: 19
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [1, 104].
+1 <= Node.val <= 100
+*/
+
+
+
 
 // Definition for a binary tree node.
 // #[derive(Debug, PartialEq, Eq)]
@@ -25,23 +48,25 @@ use std::cell::RefCell;
 use std::collections::VecDeque;
 
 impl Solution {
-    pub fn breadth_first_search(root: Option<Rc<RefCell<TreeNode>>>)  {
+    pub fn deepest_leaves_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         if root.is_none() {
-            return;
+            return 0;
         }
         
         let mut queue = VecDeque::new();
         queue.push_back(root);
+        let mut deepest_sum: i32 = 0;
         
         while !queue.is_empty() {
             let curr_length = queue.len();
         
+            let mut curr_level_max = 0;
             
             for _ in 0..curr_length {
                 
                 if let Some(node) = queue.pop_front().unwrap() {
                     let mut node_ref = node.borrow_mut();
-                    println!(node_ref.val);
+                    curr_level_max += node_ref.val;
 
                     if node_ref.left.is_some() {
                         queue.push_back(node_ref.left.take());
@@ -53,19 +78,10 @@ impl Solution {
                 }
                 
             }
+            deepest_sum = curr_level_max;
         }
+        deepest_sum
     }
 }
 
-Note for JavaScript users: JavaScript doesn't support a built-in efficient queue, but we can work around this 
-by using a second array nextQueue to implement an efficient BFS.
-
-With an efficient queue, the dequeue and enqueue operations are O(1), which means that the time complexity 
-of BFS is the same as DFS. Again, the main idea is that we visit each node only once, so the time complexity is 
-O(n⋅k) where nn is the total number of nodes, and kk is the amount of work we do at each node, 
-usually O(1). Let's look at some example problems.
-*/
-
-fn main() {
-    print!("Hello world!");
-}
+// time and space complexities of O(n)

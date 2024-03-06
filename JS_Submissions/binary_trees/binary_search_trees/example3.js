@@ -38,7 +38,7 @@ isValidBST(root.left) and isValidBST(root.right) to return true, so we need the 
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function(root) {
+const isValidBST = function(root) {
     let dfs = (node, small, large) => {
         if (!node) {
             return true;

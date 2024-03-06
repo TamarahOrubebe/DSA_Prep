@@ -59,8 +59,8 @@ It's guaranteed that val does not exist in the original BST.
 // }
 use std::rc::Rc;
 use std::cell::RefCell;
-
-fn insert_into_bst(mut root: Option<Rc<RefCell<TreeNode>>>, val: i32) -> Option<Rc<RefCell<TreeNode>>> {
+impl Solution {
+    pub fn insert_into_bst(mut root: Option<Rc<RefCell<TreeNode>>>, val: i32) -> Option<Rc<RefCell<TreeNode>>> {
         let node = Some(Rc::new(RefCell::new(TreeNode::new(val))));
         
         if root.is_none() {
@@ -86,6 +86,7 @@ fn insert_into_bst(mut root: Option<Rc<RefCell<TreeNode>>>, val: i32) -> Option<
             }
         }
         root
-}    
+    }
+}
 
 // time and space complexities O(n).

@@ -75,6 +75,6 @@ var minReorder = function(n, connections) {
     return dfs(0);
 };
 
-//The time and space complexity of this algorithm is O(n)O(n) because we only visit each node once, do constant
-// work, and are told the number of edges is n - 1 = O(n)n−1 = O(n).roads, graph, and seen all take up at most 
+//The time and space complexity of this algorithm is O(n) because we only visit each node once, do constant
+// work, and are told the number of edges is n - 1 = O(n).roads, graph, and seen all take up at most 
 // O(n) space.

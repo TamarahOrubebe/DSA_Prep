@@ -115,7 +115,7 @@ Technically in this problem, the time complexity is O(n^2) because the input is 
 we always need O(n^2) to build the hash map. The e is dominated by n^2 (because O(e < n^2)), so it can be ignored.
 
 What about the space complexity? When we build graph, we are storing all the edges in arrays. We also need some 
-space for the recursion call stack (O(n)O(n) in the worst case) as well as for seen. Therefore the space 
+space for the recursion call stack (O(n) in the worst case) as well as for seen. Therefore the space 
 complexity is O(n + e).
 
 The space complexity isn't O(n^2) because e is not necessarily dominated. In the worst case scenario, e = n^2 but 

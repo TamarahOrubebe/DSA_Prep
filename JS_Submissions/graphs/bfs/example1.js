@@ -5,6 +5,27 @@ Given an n x n binary matrix grid, return the length of the shortest clear path 
 clear path, return -1. A clear path is a path from the top-left cell (0, 0) to the bottom-right cell (n-1, n-1)
 such that all visited cells are 0. You may move 8-directionally (up, down, left, right, or diagonally).
 
+
+In this problem, we are asked to find a "clear path". A clear path is a path that starts in the top left, ends in
+the bottom right, and contains only 0.
+
+Therefore, we have a graph where each square with value 0 is a node, and edges exist between nodes that are 
+adjacent horizontally, vertically, or diagonally.
+
+As shown in the image above, starting a DFS at the top left and traversing until you reach the bottom right may 
+produce an incorrect answer.
+
+With BFS, every time we visit a node, we must have arrived in the fewest possible steps. When we reach the 
+bottom right, its guaranteed that we did so in the fewest possible steps. If we associate the steps taken so far
+with each node, then we can immediately return once we reach the bottom right.
+
+We store an extra integer with a node in each queue entry. When we get a node from the queue, we also get its 
+steps. When we put the neighbors of node onto the queue, we also push steps + 1.
+
+The implementation should look very familiar. We use a helper function valid and a directions array to make the 
+code cleaner, a good practice for all matrix graph problems. The BFS is identical to the iterative DFS 
+implementations - each iteration in the while loop is handling a single node. The only difference between DFS 
+and BFS is that we are using a queue instead of a stack.
 */
 
 /**

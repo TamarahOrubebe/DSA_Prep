@@ -56,8 +56,8 @@ bombs[i].length == 3
 
 use std::collections::{HashMap, HashSet};
 
-impl Solution {
-    pub fn maximum_detonation(bombs: Vec<Vec<i32>>) -> i32 {
+
+fn maximum_detonation(bombs: Vec<Vec<i32>>) -> i32 {
         let mut graph: HashMap<i32, Vec<i32>> = HashMap::new();
         let len = bombs.len();
         
@@ -102,5 +102,4 @@ impl Solution {
             ans = ans.max(dfs(i as i32, &graph, &mut visited.clone()));
         }
         ans
-    }
 }

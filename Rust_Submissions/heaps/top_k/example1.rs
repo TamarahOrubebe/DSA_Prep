@@ -8,22 +8,18 @@ use std::cmp::Reverse;
 fn top_k_elements(elements: Vec<i32>, k: i32) -> Vec<i32> {
         let mut hash = HashMap::new();
         let mut heap: BinaryHeap<Reverse<(i32, i32)>> = BinaryHeap::new();
-        for k in &elements {
-           *hash.entry(*k).or_insert(1) += 1;
+        for k in elements {
+           *hash.entry(k).or_insert(1) += 1;
         }
         
-        for (key, value) in hash.iter() {
-            heap.push(Reverse((*value, *key)));
+        for (key, value) in hash {
+            heap.push(Reverse((value, key)));
             if heap.len() > k as usize{
                 heap.pop();
             }
         }
         
-        let mut ans = Vec::new();
-        for pair in heap.iter() {
-            ans.push(pair.0.1);
-        }
-        ans
+        heap.into_iter().map(|Reverse((_, elem))| elem).collect()
 }    
 
 fn main() {

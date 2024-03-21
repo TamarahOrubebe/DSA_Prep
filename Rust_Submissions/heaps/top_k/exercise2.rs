@@ -44,13 +44,13 @@ fn k_closest(points: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
         let xi = point[0];
         let yi = point[1];
         let distance = xi*xi + yi*yi;
-        heap.push((distance, (*point).to_vec()));
+        heap.push((distance, point));
         if heap.len() > k as usize {
             heap.pop();
         }    
     }    
         
-    heap.into_iter().map(|(_, point)| point).collect()    l
+    heap.into_iter().map(|(_, point)| point).collect()   
 }
 
 

@@ -6,20 +6,17 @@ use std::collections::BinaryHeap;
 fn top_k_closest_elements(elements: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
         let mut heap: BinaryHeap<(i32, i32)> = BinaryHeap::new();
         
-        for num in &elements {
+        for num in elements {
             let diff = (num - x).abs();
-          heap.push((diff, *num));
+          heap.push((diff, num));
           if heap.len() > k as usize {
               heap.pop();
           }
         }
 
-        let mut ans = Vec::new();
-        for pair in heap.iter() {
-            ans.push(pair.1);
-        }
-        ans.sort();
-        ans
+       let mut ans: Vec<i32> = heap.into_iter().map(|(_, elem)|elem).collect();
+       ans.sort();
+       ans
 }
 
 fn main() {

@@ -6,9 +6,7 @@ with x <= y. If x == y, then both stones are destroyed. If x != y, then x is des
 Return the weight of the last remaining stone, or 0 if there are no stones left.
 */
 use std::collections::BinaryHeap;
-
-fn main() {
-    fn last_stone_weight(stones: Vec<i32>) -> i32 {
+fn last_stone_weight(stones: Vec<i32>) -> i32 {
         let mut heap: BinaryHeap<i32> = BinaryHeap::from(stones);
         
         while heap.len() > 1 as usize {
@@ -26,7 +24,9 @@ fn main() {
           0
       };
       ans
-    }
+}
+
+fn main() {
     let stones = vec![2, 7, 4, 1, 8, 1];
     println!("{:#?}", last_stone_weight(stones));
 }

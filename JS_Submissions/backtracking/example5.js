@@ -73,7 +73,7 @@ var exist = function(board, word) {
 The time complexity of this algorithm is O(n . m . 3^L), where L = word.length. Thinking of the solution space 
 tree, each node can have 3 children (not 4, because we don't consider the square where we came from, thus each 
 node has at most 3 children, except the first node). The maximum depth is L, so this gives us 3^L nodes. We also
-have m . n squares that we can start from. This time complexity would occur in the worst-case scenario if we 
+have m . nj 76 squares that we can start from. This time complexity would occur in the worst-case scenario if we 
 had a grid with only one letter, and the word was also only that one letter, plus a different letter at the end.
 For example, board = [["A", "A", "A"],["A", "A", "A"],["A", "A", "A"]], word = "AAAAAAAAZ". The space complexity
 is O(L) due to the recursion call stack and seen if it is a set. If using a boolean array, the space 

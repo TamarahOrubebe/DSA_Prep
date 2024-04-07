@@ -1,5 +1,5 @@
 /* 
-Example 2: 188. Best Time to Buy and Sell Stock IV
+Example 5: 188. Best Time to Buy and Sell Stock IV
 
 You are given an integer array prices where prices[i] is the price of a given stock on the i^th day, and an 
 integer k. You can buy the stock and sell it, but you can only hold on to one unit of stock at any given time. 

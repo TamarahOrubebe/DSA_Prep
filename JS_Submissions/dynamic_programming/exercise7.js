@@ -37,29 +37,78 @@ n == matrix.length == matrix[i].length
  * @return {number}
  */
 var minFallingPathSum = function(matrix) {
-        const n = matrix.length;
-        const dp = new Array(n).fill(0).map(() => new Array(n).fill(0));
+       const dp = (row, col) => {
+           if(row === n - 1) {
+               return matrix[row][col];
+           }
+           
+           if(memo[row][col] != Infinity) {
+               return memo[row][col];
+           }
+           
+           
+           let left = col > 0? dp(row + 1, col - 1) : Infinity;
+           let mid = dp(row + 1, col);
+           let right = col < n - 1 ? dp(row + 1, col + 1) : Infinity;
+           
+           memo[row][col] = Math.min(left, mid, right) + matrix[row][col];
+
+           // ALTERNATE ITERATION CODE FOR THE RECURSIVE CALLS ABOVE
+
+           //    let minPathSum = Infinity;
+           //     for (let i = -1; i <= 1; i++) {
+           //         const nextCol = col + i;
+           //         if (nextCol >= 0 && nextCol < n) {
+           //             minPathSum = Math.min(minPathSum, dp(row + 1, nextCol));
+           //         }
+           //     }
         
-        for (let col = 0; col < n; col++) {
-            dp[n - 1][col] = matrix[n - 1][col]
+           //     memo[row][col] = matrix[row][col] + minPathSum;
+        
+           
+           return memo[row][col];
+       }
+       
+       let n = matrix.length;
+       const memo = [];
+        for (let i = 0; i < n; i++) {
+            memo.push(new Array(n).fill(Infinity));
         }
+    
+       let ans = Infinity;
+       for(let i = 0; i < n; i++) {
+             ans = Math.min(ans, dp(0, i));  
+       }
+    
+       return ans;
+};
+ 
+
+// BOTTOM UP APPROACH
+// var minFallingPathSum = function(matrix) {
+//         const n = matrix.length;
+//         const dp = new Array(n).fill(0).map(() => new Array(n).fill(0));
+        
+//         for (let col = 0; col < n; col++) {
+//             dp[n - 1][col] = matrix[n - 1][col]
+//         }
       
         
-         for (let row = n - 2; row >= 0; row--) {
-            for (let col = 0; col < n; col++) {
-                let left = (col > 0) ? dp[row + 1][col - 1] : Infinity;
-                let middle = dp[row + 1][col];
-                let right = (col < n - 1) ? dp[row + 1][col + 1] : Infinity;
+//          for (let row = n - 2; row >= 0; row--) {
+//             for (let col = 0; col < n; col++) {
+//                 let left = (col > 0) ? dp[row + 1][col - 1] : Infinity;
+//                 let middle = dp[row + 1][col];
+//                 let right = (col < n - 1) ? dp[row + 1][col + 1] : Infinity;
 
-                dp[row][col] = matrix[row][col] + Math.min(left, middle, right);
-            }
-    }
+//                 dp[row][col] = matrix[row][col] + Math.min(left, middle, right);
+//             }
+//     }
     
-    let minSum = Infinity;
-    for (let col = 0; col < n; col++) {
-        minSum = Math.min(minSum, dp[0][col]);
-    }
+//     let minSum = Infinity;
+//     for (let col = 0; col < n; col++) {
+//         minSum = Math.min(minSum, dp[0][col]);
+//     }
     
-    return minSum;
+//     return minSum;
        
-};
+// };

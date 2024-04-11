@@ -52,20 +52,7 @@ var minFallingPathSum = function(matrix) {
            let right = col < n - 1 ? dp(row + 1, col + 1) : Infinity;
            
            memo[row][col] = Math.min(left, mid, right) + matrix[row][col];
-
-           // ALTERNATE ITERATION CODE FOR THE RECURSIVE CALLS ABOVE
-
-           //    let minPathSum = Infinity;
-           //     for (let i = -1; i <= 1; i++) {
-           //         const nextCol = col + i;
-           //         if (nextCol >= 0 && nextCol < n) {
-           //             minPathSum = Math.min(minPathSum, dp(row + 1, nextCol));
-           //         }
-           //     }
         
-           //     memo[row][col] = matrix[row][col] + minPathSum;
-        
-           
            return memo[row][col];
        }
        

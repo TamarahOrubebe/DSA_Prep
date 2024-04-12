@@ -33,35 +33,23 @@ n == nums.length
  * @param {number} k
  * @return {number}
  */
-let findMaxAverage = function(nums, k) {
-    let left = curr = ans = len = 0;
+var findMaxAverage = function(nums, k) {
+    let ans = 0, currSum = 0;
     
-    
-    for(let i = 0; i <  k; i++) {
-        curr += nums[i];
-        len += 1;
+    for (let i = 0; i < k; i++) {
+        currSum += nums[i];
     }
     
-    ans = curr / k;
+    ans = currSum / k;
     
-    for (let right = k; right < nums.length; right++) {
-        curr += nums[right];
-        len += 1;
-        
-        while (len > k) {
-            curr -= nums[left];
-            left++;
-            len--;
-        }
-        
-        ans = Math.max(ans, curr / k );
-        
+    for(let i = k; i < nums.length; i++) {
+        currSum += nums[i] - nums[i - k];
+        ans = Math.max(ans, currSum / k);
     }
     
     return ans;
 };
 
-// the work done in each loop iteration is amortized constant, so this algorithm has a runtime of O(n),
-// where nn is the length of nums, and O(1) space.
+// both loops cover the entire length of nums so this algorithm has a runtime of O(n),
+// where n is the length of nums, and O(1) space.
 
-// O(k) + amortised O(n - k) == O(n)

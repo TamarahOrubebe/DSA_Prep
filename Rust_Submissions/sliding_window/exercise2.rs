@@ -32,25 +32,24 @@ pub fn longest_ones(nums: Vec<i32>, k: i32) -> i32 {
     let mut left = 0;
     let mut curr = 0;
     let mut ans = 0;
-    let len = nums.len() as i32;
         
-    for right in 0..len {
-        if nums[right as usize] == 0 {
+    for right in 0..nums.len() {
+        if nums[right] == 0 {
             curr += 1;
         }
             
         while curr > k {
-            if nums[left as usize] == 0 {
+            if nums[left] == 0 {
                 curr -= 1;
             }
                 
                 left += 1;
         }
             
-        ans = i32::max(ans, right - left + 1);
+        ans = ans.max((right - left + 1) as i32);
     }
     ans
 }
 
 // the work done in each loop iteration is amortized constant, so this algorithm has a runtime of O(n),
-// where nn is the length of nums, and O(1) space.
+// where n is the length of nums, and O(1) space.

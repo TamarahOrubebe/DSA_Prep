@@ -56,4 +56,4 @@ let longestOnes = function(nums, k) {
 
 
 // the work done in each loop iteration is amortized constant, so this algorithm has a runtime of O(n),
-// where nn is the length of nums, and O(1) space.
+// where n is the length of nums, and O(1) space.

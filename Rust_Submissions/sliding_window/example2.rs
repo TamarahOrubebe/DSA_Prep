@@ -21,10 +21,10 @@ pub fn find_length(s: &str) -> i32 {
             left += 1;
         }
         
-        ans = ans.max(right - left + 1);
+        ans = ans.max(right - left + 1) as i32;
     }
     
-    ans as i32
+    ans
 }
 
 /* 

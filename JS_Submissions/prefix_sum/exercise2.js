@@ -46,17 +46,13 @@ Constraints:
  * @return {number}
  */
 var minStartValue = function(nums) {
-    let total = 0;
-    let minSum = 0;
-    
+    let total = minSum = 0;
     
     for (let i = 0; i < nums.length; i++) {
         total += nums[i];
         minSum = Math.min(minSum, total);
         
     }
-    
-    
     
     return -minSum + 1;
 };

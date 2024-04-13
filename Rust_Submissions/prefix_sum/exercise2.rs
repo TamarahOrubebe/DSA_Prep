@@ -41,11 +41,9 @@ Constraints:
 
 */
 fn min_start_value(nums: Vec<i32>) -> i32 {
-    let mut total = 0;
-    let mut min_sum = 0;
-    let start = 0 as usize;
+    let (mut total, mut min_sum) = (0, 0);
         
-    for i in start..nums.len() {
+    for i in 0..nums.len() {
         total += nums[i];
         min_sum = i32::min(min_sum, total)
     }

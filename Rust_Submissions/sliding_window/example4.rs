@@ -7,12 +7,12 @@ length is k.
 
 pub fn find_best_sub_array (nums: Vec<i32>, k: i32) -> i32 {
     let (mut sum, mut ans) = (0, 0);
-
-    for i in 0..k {
+    let new_k = k as usize;
+    for i in 0..new_k {
         sum += nums[i];
     }
     ans = sum;
-    for i in k..nums.len() {
+    for i in new_k..nums.len() {
         sum += nums[i] - nums[i - k];
         ans = ans.max(sum);
     }

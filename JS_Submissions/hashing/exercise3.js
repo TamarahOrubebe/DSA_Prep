@@ -31,22 +31,14 @@ Constraints:
  * @return {number}
  */
 var countElements = function(arr) {
-    let hash = new Map();
-    let count = 0;
-    for (let i = 0; i < arr.length; i++) {
-       if(hash.has(arr[i])) {
-           hash.set(arr[i], hash.get(arr[i]) + 1);
-       }
-        hash.set(arr[i], 1);
-    }
-    
-    for (const elem of arr) {
-        if(hash.has(elem + 1)) {
-            count++;
+    const set = new Set(arr);
+    let ans = 0;
+    for (const num of arr) {
+        if (set.has(num + 1)) {
+            ans += 1;
         }
     }
-    
-   return count;
+    return ans;
 }; 
 
 

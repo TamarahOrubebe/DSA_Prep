@@ -25,26 +25,18 @@ Constraints:
 0 <= arr[i] <= 1000
 
 */
+use std::collections::HashSet;
+
 fn count_elements(arr: Vec<i32>) -> i32 {
-    use std::collections::HashMap;
-        
-    let mut hash = HashMap::new();
-    let mut count = 0;
-        
-    for i in arr.iter() {
-        if hash.contains_key(i) {
-            hash.insert(i, hash.get(i).unwrap() + 1);
-        }
-            
-        hash.insert(i, 1);
-    }
-        
-    for i in arr.iter() {
-        if hash.contains_key(&(i + 1)) {
-           count += 1;
+   
+    let mut set: HashSet<i32> = arr.iter().cloned().collect();
+    let mut ans = 0;
+    for &num in &arr {
+        if set.contains(&(num + 1)) {
+            ans += 1
         }
     }
-    count
+    ans
 }
 
 // time and space complexity of o(n).

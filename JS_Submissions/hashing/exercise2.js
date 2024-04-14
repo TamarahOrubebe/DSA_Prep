@@ -42,12 +42,7 @@ Follow up: Could you implement a solution using only O(1) extra space complexity
 var missingNumber = function(nums) {
     let len = nums.length;
     let expectedSum = len*(len + 1) / 2;
-    let actualSum = 0;
-    
-    for(let i = 0; i <= len - 1; i++) {
-        actualSum += nums[i];
-    }
-    
+    let actualSum = nums.reduce((acc, curr) => acc + curr);
     return expectedSum - actualSum;
 };
 

@@ -25,14 +25,11 @@ Constraints:
 sentence consists of lowercase English letters.
 
 */
-
+use std::collections::HashSet;
 fn check_if_pangram(sentence: String) -> bool {
-    use std::collections::HashSet;
-    let mut set = HashSet::new();
-        
-    for c in sentence.chars() {
-        set.insert(c);
-    }
+    
+    let mut set: HashSet<char> = sentence.chars().collect();
+
     set.len() == 26
 }
 

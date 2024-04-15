@@ -41,10 +41,12 @@ fn can_construct(ransom_note: String, magazine: String) -> bool {
                 return false;
             }
             
-            *hash.entry(char).or_insert(0) -= 1;
-            if hash.get(&char) == Some(&0) {
-                hash.remove(&char);
-            }
+            if let Some(n) = hash.get_mut(&char) {
+                *n -= 1;
+                if *n == 0 {
+                    hash.remove(&char);
+                }
+            }  
         }
     true
 }

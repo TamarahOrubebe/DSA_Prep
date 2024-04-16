@@ -71,5 +71,8 @@ fn main() {
 }
 
 
+// The pointers use O(1) space, and if there are nn nodes in the linked list, the time complexity is O(n) for the
+// traversals.
+
 
 

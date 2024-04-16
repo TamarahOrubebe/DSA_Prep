@@ -35,6 +35,22 @@ fn get_middle(head: Option<Box<ListNode>>) -> i32 {
     slow.as_ref().unwrap().val
 }
 
+// MORE IDIOMATIC RUST CODE
+fn get_middle(head: Option<Box<ListNode>>) -> i32 {
+    let mut slow = &head;
+    let mut fast = &head;
+
+    while let Some(node) = fast {
+        if node.next.is_none() {
+            break;
+        }
+        slow = &slow.as_ref().unwrap().next;
+        fast = &fast.as_ref().unwrap().next.as_ref().unwrap().next;
+    }
+
+    slow.as_ref().unwrap().val
+}
+
 fn main() {
      // Create the nodes
     let mut head = ListNode::new(1);

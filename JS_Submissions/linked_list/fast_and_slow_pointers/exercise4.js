@@ -68,7 +68,8 @@ var pairSum = function(head) {
         prev = curr;
         curr = next;
     }
-    // since prev points to the middle of the list i.e the reversed part, we can   make our fast pointer point to prev and slow pointer point to head to make it easier to take
+    // since prev points to the middle of the list i.e the reversed part, we can   make our fast pointer point
+    // to prev and slow pointer point to head to make it easier to take
     // the pair sum since each node will be exactly n / 2 away from its pair
     fast = prev;
     slow = head; 

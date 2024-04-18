@@ -24,8 +24,8 @@ fn is_valid(s: &str) -> bool {
                 return false;
             } else {
                 let recent_opening = stack.pop().unwrap();
-                if let Some(closing) = matching.get(&recent_opening) {
-                    if *closing != c {
+                if let Some(&closing) = matching.get(&recent_opening) {
+                    if closing != c {
                         return false;
                     }
                 }

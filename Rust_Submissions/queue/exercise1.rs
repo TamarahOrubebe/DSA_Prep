@@ -60,7 +60,7 @@ impl MovingAverage {
         self.deck.push_back(val);
         self.total += val;
         
-        if(self.deck.len() as i32 > self.size) {
+        if self.deck.len() as i32 > self.size {
             let num_to_sub = self.deck.pop_front().unwrap();
             self.total -= num_to_sub;
         }

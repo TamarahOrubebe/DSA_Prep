@@ -45,10 +45,10 @@ use std::cell::RefCell;
 
 fn dfs(node: Option<Rc<RefCell<TreeNode>>>, values: &mut Vec<i32>) {
     if let Some(n) = node {
-        let n_ref = n.borrow();
-        dfs(n_ref.left.clone(), values);
+        let n_ref = n.borrow_mut();
+        dfs(n_ref.left.take(), values);
         values.push(n_ref.val);
-        dfs(n_ref.right.clone(), values);
+        dfs(n_ref.right.take(), values);
     }
 }
 

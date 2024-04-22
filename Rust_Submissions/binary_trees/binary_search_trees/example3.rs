@@ -34,29 +34,61 @@ isValidBST(root.left) and isValidBST(root.right) to return true, so we need the 
 
 */
 
-/**
- * @param {TreeNode} root
- * @return {boolean}
- */
-const isValidBST = function(root) {
-    let dfs = (node, small, large) => {
-        if (!node) {
-            return true;
+
+// Definition for a binary tree node.
+#[derive(Debug, PartialEq, Eq)]
+pub struct TreeNode {
+    pub val: i32,
+    pub left: Option<Rc<RefCell<TreeNode>>>,
+    pub right: Option<Rc<RefCell<TreeNode>>>,
+}
+
+impl TreeNode {
+    #[inline]
+    pub fn new(val: i32) -> Self {
+        TreeNode {
+            val,
+            left: None,
+            right: None,
         }
-        
-        if (small >= node.val || node.val >= large) {
+    }
+}
+
+use std::rc::Rc;
+use std::cell::RefCell;
+
+fn dfs(node: Option<Rc<RefCell<TreeNode>>>, small: i64, large: i64) -> bool {
+    if let Some(n) = node {
+        let mut n_ref = n.borrow();
+        if (small as i32) >= n_ref.val || n_ref.val >= (large as i32) {
             return false;
         }
-        
-        let left = dfs(node.left, small, node.val);
-        let right = dfs(node.right, node.val, large);
-        
-        // tree is a bst if left and right subtrees are also BSTs
-        return left && right;
+        dfs(n_ref.left.take(), small, n_ref.val as i64) && 
+               dfs(n_ref.right.take(), n_ref.val as i64, large)
+    } else {
+        true
     }
     
-    return dfs(root, -Infinity, Infinity);
-};
+}
+
+fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+    dfs(root, i64::MIN, i64::MAX)
+}
+
+fn main() {
+    // Construct the binary search tree
+    let mut root = TreeNode::new(2);
+    let  left = TreeNode::new(1);
+    let  right = TreeNode::new(3);
+
+    
+    root.left = Some(Rc::new(RefCell::new(left)));
+    root.right = Some(Rc::new(RefCell::new(right)));
+
+    // Check if the tree is a valid binary search tree
+    let is_valid = is_valid_bst(Some(Rc::new(RefCell::new(root))));
+    println!("Is the tree a valid binary search tree? {}", is_valid);
+}
 
 // The time and space complexity are both O(n) for the same reasons as all the other examples.
 

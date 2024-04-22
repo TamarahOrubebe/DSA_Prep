@@ -40,12 +40,12 @@ var rangeSumBST = function(root, low, high) {
 };
 
 /* 
-Although the time complexity is still O(n)O(n) for the case when all nodes in the tree are between low and high,
+Although the time complexity is still O(n) for the case when all nodes in the tree are between low and high,
 on average this algorithm will perform better than simply searching all nodes. For example, if you had a full 
 tree with a million nodes, and the root's value was greater than high, then you can immediately save 500,000 
 visits based on the logic that all nodes in the right subtree are greater than the root's value which is 
 already outside the range.
 
-The space complexity is O(n)O(n) for the stack / recursion call stack.
+The space complexity is O(n) for the stack / recursion call stack.
 
 */

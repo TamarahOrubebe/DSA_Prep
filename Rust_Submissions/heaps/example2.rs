@@ -7,13 +7,9 @@ Return the minimum number of operations to reduce the sum of nums by at least ha
 
 use std::collections::BinaryHeap;
 fn last_stone_weight(nums: Vec<i32>) -> i32 {
-        let mut heap: BinaryHeap<i32> = BinaryHeap::new();
-        let mut target = 0;
-        for num in nums {
-            target += num;
-            heap.push(num);
-        }
-        
+        let mut heap: BinaryHeap<i32> = nums.into_iter().collect();
+        let mut target = heap.iter().sum(); 
+
         target /= 2;
         let mut num_of_operations = 0;
         while target > 0 {

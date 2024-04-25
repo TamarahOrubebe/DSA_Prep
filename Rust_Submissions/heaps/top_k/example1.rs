@@ -9,7 +9,7 @@ fn top_k_elements(elements: Vec<i32>, k: i32) -> Vec<i32> {
         let mut hash = HashMap::new();
         let mut heap: BinaryHeap<Reverse<(i32, i32)>> = BinaryHeap::new();
         for k in elements {
-           *hash.entry(k).or_insert(1) += 1;
+           *hash.entry(k).or_insert(0) += 1;
         }
         
         for (key, value) in hash {

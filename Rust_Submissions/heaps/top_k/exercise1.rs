@@ -31,21 +31,17 @@ use std::collections::BinaryHeap;
 use std::cmp::Reverse;
 
 fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
-    let mut heap: BinaryHeap<Reverse<i32>> = BinaryHeap::new();
+    let mut min_heap: BinaryHeap<Reverse<i32>> = BinaryHeap::new();
         
-    for num in nums {
-            heap.push(Reverse(num));
-            if heap.len() > k as usize {
-                heap.pop();
+        for num in nums {
+            min_heap.push(Reverse(num));
+            
+            while min_heap.len() as i32 > k {
+                min_heap.pop();
             }
-    }    
+        }
         
-    let ans = if let Some(Reverse(num)) = heap.pop() {
-                num
-            } else {
-                0
-            };   
-    ans    
+        (*min_heap.peek().unwrap()).0
 }
 
 // time complexity of O(n.log k) space complexity of O(k)

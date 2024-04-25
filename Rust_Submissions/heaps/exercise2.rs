@@ -47,21 +47,21 @@ use std::collections::BinaryHeap;
 use std::cmp::Reverse;
 
 fn connect_sticks(sticks: Vec<i32>) -> i32 {
-        let mut heap = BinaryHeap::with_capacity(sticks.len());
+         let mut min_heap: BinaryHeap<Reverse<i32>> = BinaryHeap::new();
         
-        for num in sticks {
-            heap.push(Reverse(num));
+        for &num in sticks.iter() {
+            min_heap.push(Reverse(num));
         }
         
-        let mut ans = 0;
-        while heap.len() > 1 {
-           if let Some(Reverse(first)) = heap.pop() {
-                if let Some(Reverse(second)) = heap.pop() {
-                    let new_len = first + second;
-                    ans += new_len;
-                    heap.push(Reverse(new_len));
+        let mut cost = 0;
+        for _ in 0..sticks.len() {
+            if let Some(Reverse(num1)) = min_heap.pop() {
+                if let Some(Reverse(num2)) = min_heap.pop() {
+                    cost += num1 + num2;
+                    let new_num = num1 + num2;
+                    min_heap.push(Reverse(new_num));
                 }
             }
         }
-        ans
+        cost
 }

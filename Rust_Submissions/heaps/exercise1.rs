@@ -45,9 +45,7 @@ use std::collections::BinaryHeap;
 fn min_stone_sum(piles: Vec<i32>, k: i32) -> i32 {
         let mut heap = BinaryHeap::from(piles);
         
-        let target = 0;
-        
-        for _ in target..k {
+        for _ in 0..k {
             if let Some(num) = heap.pop() {
                 let result: f32 = num as f32 / 2 as f32;
                 heap.push(result.ceil() as i32);

@@ -36,7 +36,7 @@ fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
         for num in nums {
             min_heap.push(Reverse(num));
             
-            while min_heap.len() as i32 > k {
+            if min_heap.len() as i32 > k {
                 min_heap.pop();
             }
         }

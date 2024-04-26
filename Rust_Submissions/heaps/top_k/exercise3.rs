@@ -73,12 +73,7 @@ impl KthLargest {
             self.heap.pop();
         }
         
-        let ans = if let Some(Reverse(num)) = self.heap.peek() {
-            *num
-        } else {
-            0
-        };
-        ans
+        (*self.heap.peek().unwrap()).0
     }
 }
 
@@ -87,3 +82,5 @@ impl KthLargest {
  * let obj = KthLargest::new(k, nums);
  * let ret_1: i32 = obj.add(val);
  */
+
+ 

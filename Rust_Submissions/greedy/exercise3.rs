@@ -32,14 +32,13 @@ pub fn max_number_of_apples(mut weight: Vec<i32>) -> i32 {
         let mut sum = 0;
         let mut ans = 0;
         
-        for apple in weight {
-            sum += apple;
-            
-            if sum <= 5000 {
-                ans += 1;
-            } else {
+        for (_, num) in weight.iter().enumerate() {
+            sum += num; 
+            if sum > 5000 {
                 break;
             }
+            ans += 1;
+            
         }
         ans
 }

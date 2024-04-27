@@ -32,26 +32,30 @@ arr.length is even.
 1 <= arr[i] <= 105
 */
 
-use std::collections::HashMap;
-
-
-pub fn min_set_size(arr: Vec<i32>) -> i32 {
-        let target = (arr.len() / 2) as i32;
-        let mut hash: HashMap<i32, i32> = HashMap::new();
-        
-        for num in arr {
-            *hash.entry(num).or_insert(0) += 1;
-        }
-        let mut values: Vec<&i32> = hash.values().collect();
-        values.sort();
-        let mut removed: i32 = 0;
-        let mut ans = 0;
-        
-        while removed < target {
-            let value = values.pop().unwrap();
-            removed += *value;
-            ans += 1;
-        }
-       ans
-}
-   
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var minSetSize = function(arr) {
+    
+    let hash = new Map();
+    
+    for(const num of arr) {
+        hash.set(num, (hash.get(num) || 0) + 1);
+    }
+    
+    let values = Array.from(hash.values());
+    values.sort();
+    
+    let removed = 0; 
+    let target = Math.floor(arr.length / 2);
+    let ans = 0;
+    
+    while (removed < target) {
+        let value = values.pop();
+        removed += value;
+        ans++;
+    }
+    
+    return ans;
+};

@@ -40,5 +40,5 @@ depend on the language you're using.
 As we can see from the examples, most greedy problems involve sorting the input. You could argue that a lot of 
 the problems we have looked at in earlier chapters were greedy problems - especially in the previous chapter 
 (heap). Most greedy problems just require some logical reasoning to see that a greedy approach works, and then 
-implementation is relatively straightforward. Try these upcoming problems before moving on.
+implementation is relatively straightforward. 
 */

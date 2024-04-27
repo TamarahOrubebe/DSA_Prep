@@ -41,14 +41,14 @@ pub fn maximum69_number (num: i32) -> i32 {
         let num_string = num.to_string();
         let mut heap: BinaryHeap<String> = BinaryHeap::new();
         heap.push(num_string.clone());
-        let mut i = 0 as usize;
-        for char in num_string.chars() {
+
+        for (i, char) in num_string.chars().enumerate() {
             if char == '9' {
                 heap.push(format!("{}6{}", &num_string[..i], &num_string[i + 1..]));
             } else {
                 heap.push(format!("{}9{}", &num_string[..i], &num_string[i + 1..]));
             }
-            i += 1;
+            
         }
         
         heap.pop().unwrap().parse().unwrap()

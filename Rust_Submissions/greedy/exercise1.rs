@@ -53,3 +53,5 @@ pub fn maximum69_number (num: i32) -> i32 {
         
         heap.pop().unwrap().parse().unwrap()
 }
+
+// time complexity O(n.logn) space complexity O(n) because of the heap where n is the length of the digit.

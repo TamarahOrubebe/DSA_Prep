@@ -39,21 +39,20 @@ Constraints:
 
 pub fn maximum_units(mut box_types: Vec<Vec<i32>>, truck_size: i32) -> i32 {
         box_types.sort_by(|a, b| b[1].cmp(&a[1]));
-        let mut sum = 0;
-        let mut i = 0;
+        let mut limit = 0;
         let mut ans = 0;
         
-        for i in 0..box_types.len() {
-            sum += box_types[i][0 as usize];
-            if sum > truck_size {
-                sum -= box_types[i][0 as usize];
-                let extra = truck_size - sum;
-                sum += extra;
-                ans += extra * box_types[i][1];
-                return ans;
+         for (_, arr) in box_types.iter().enumerate() {
+            limit += arr[0];
+            if limit > truck_size {
+                limit -= arr[0];
+                let extra = truck_size - limit;
+                ans += extra * arr[1];
+                break;
             } else {
-                ans += box_types[i][0] * box_types[i][1];
+                ans +=  arr[0] * arr[1];
             }
         }
+        
         ans
 }

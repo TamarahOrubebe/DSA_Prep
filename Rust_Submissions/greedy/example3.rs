@@ -39,7 +39,7 @@ fn main() {
 
 /*
 This algorithm has a time complexity of O((k+n)⋅logn), where n is the number of projects given. The heap's max 
-size is n, which means its operations are \log{}nlogn in the worst case, and we do k + n operations 
+size is n, which means its operations are nlogn in the worst case, and we do k + n operations 
 (k pop operations, n push operations). The sort at the start also costs O(n⋅logn), but this 
 doesn't change the complexity. The space complexity is O(n) due to the heap.
 

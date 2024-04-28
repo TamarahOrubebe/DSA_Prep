@@ -41,43 +41,31 @@ m == queries.length
 
 pub fn answer_queries(mut nums: Vec<i32>, mut queries: Vec<i32>) -> Vec<i32> {
         nums.sort();
-        let mut ans = vec![];
+        let mut ans = Vec::new();
         
-//         for i in 1..nums.len() {
-//             nums[i] += nums[i - 1 as usize];
-//         }
+        for i in 1..nums.len() {
+            nums[i] += nums[i - 1];
+        }
         
-//         fn binary_search(arr: Vec<i32>, target: i32) -> i32 {
-//             let mut left = 0;
-//             let mut right = arr.len() as i32 - 1;
+        fn binary_search(arr: Vec<i32>, target: i32) -> usize {
+            let mut left = 0;
+            let mut right = arr.len() - 1;
             
-//             while left <= right {
-//                 let mid = (left + right) / 2;
+            while left <= right {
+                let mid = (left + right) / 2;
                 
-//                 if arr[mid as usize] > target {
-//                     right = mid - 1;
-//                 } else {
-//                     left = mid + 1;
-//                 }
-//             }
-//             left
-//         }
-        
-//         for query in queries {
-//             let idx = binary_search(nums.clone(), query);
-//             ans.push(idx);
-//         }
-        for query in queries.iter_mut() {
-            let mut count = 0;
-            for num in &nums {
-                  if *query >= *num {
-                      *query -= *num;
-                      count += 1;
+                if arr[mid] > target {
+                    right = mid - 1;
                 } else {
-                    break;
+                    left = mid + 1;
                 }
             }
-            ans.push(count);
+            left
+        }
+        
+        for query in queries {
+            let idx = binary_search(&nums, query) as i32;
+            ans.push(idx);
         }
         ans
 }

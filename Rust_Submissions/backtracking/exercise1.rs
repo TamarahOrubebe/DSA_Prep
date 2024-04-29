@@ -42,9 +42,9 @@ pub fn all_paths_source_target(graph: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
                 return;
             }
             
-            for neighbor in &graph[node as usize] {
-                path.push(*neighbor);
-                backtrack(*neighbor, path, graph, ans);
+            for &neighbor in &graph[node as usize] {
+                path.push(neighbor);
+                backtrack(neighbor, path, graph, ans);
                 path.pop();
             }
             

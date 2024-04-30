@@ -51,7 +51,7 @@ fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {
             memo[i] = i32::min(
                 dp(cost, i - 1, memo) + cost[i - 1],
                 dp(cost, i - 2, memo) + cost[i - 2]);
-            memo[i as usize]
+            memo[i]
         }
         
         let mut memo = vec![-1; cost.len() + 1];

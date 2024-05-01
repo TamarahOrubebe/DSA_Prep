@@ -66,3 +66,7 @@ fn main() {
     let nums = vec![2, 7, 9, 3, 1];
     println!("{}", rob(nums));
 }
+
+// The time complexity of this algorithm is O(n), where nn is the length of the input array, because we only
+// visit each state once.At each state, applying the recurrence relation is O(1).The space complexity is
+// also O(n) because that's how much space we need to cache the results for each state.

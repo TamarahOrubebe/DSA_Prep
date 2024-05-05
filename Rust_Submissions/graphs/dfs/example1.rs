@@ -41,52 +41,61 @@ revisiting it.
 
 */
 
+use std::collections::HashMap;
 
-/**
- * @param {number[][]} isConnected
- * @return {number}
- */
-var findCircleNum = function(isConnected) {
-    let dfs = node => {
-        for (const neighbor of graph.get(node)) {
-            // the next 2 lines are needed to prevent cycles
-            if (!seen[neighbor]) {
-                seen[neighbor] = true;
-                dfs(neighbor);
+fn find_circle_num(is_connected: Vec<Vec<i32>>) -> i32 {
+    fn dfs(node: usize, graph: &HashMap<usize, Vec<usize>>, seen: &mut Vec<bool>) {
+        if let Some(neighbors) = graph.get(&node) {
+            for &neighbor in neighbors {
+                // the next 2 lines are needed to prevent cycles
+                if !seen[neighbor] {
+                    seen[neighbor] = true;
+                    dfs(neighbor, graph, seen);
+                }
             }
         }
     }
-    
-    // build the graph
-    let n = isConnected.length;
-    let graph = new Map();
-    for (let i = 0; i < n; i++) {
-        graph.set(i, []);
+
+    // Build the graph
+    let n = is_connected.len();
+    let mut graph: HashMap<usize, Vec<usize>> = HashMap::new();
+    for i in 0..n {
+        graph.insert(i, Vec::new());
     }
-    
-    for (let i = 0; i < n; i++) {
-        for (let j = i + 1; j < n; j++) {
-            if (isConnected[i][j]) {
-                graph.get(i).push(j);
-                graph.get(j).push(i);
+
+    for i in 0..n {
+        for j in i + 1..n {
+            if is_connected[i][j] == 1 {
+                graph.get_mut(&i).unwrap().push(j);
+                graph.get_mut(&j).unwrap().push(i);
             }
         }
     }
-    
-    let seen = new Array(n).fill(false);
-    let ans = 0;
-    
-    for (let i = 0; i < n; i++) {
-        if (!seen[i]) {
-            ans++;
+
+    let mut seen = vec![false; n];
+    let mut ans = 0;
+
+    for i in 0..n {
+        if !seen[i] {
+            ans += 1;
             seen[i] = true;
-            dfs(i);
+            dfs(i, &graph, &mut seen);
         }
     }
-    
-    return ans;
-};
 
+    ans
+}
+
+fn main() {
+    // Example usage
+    let is_connected = vec![
+        vec![1, 1, 0],
+        vec![1, 1, 0],
+        vec![0, 0, 1]
+    ];
+    let result = find_circle_num(is_connected);
+    println!("Number of connected circles: {}", result);
+}
 
 /* 
 The time complexity of DFS on a graph is slightly different than when it is on a binary tree. With binary tree 
@@ -106,7 +115,7 @@ e = n^2
 Each node is visited only once
 We iterate over a node's edges only when we are visiting that node
 Because we can only visit a node once, a node's edges are only iterated over once
-Therefore, all edges are iterated over only once, which costs O(e)
+Therefore, all edges are iterated over only once, which costs O(e)O(e)
 This is similar to the argument we made in the sliding window article that justified an O(n) time complexity 
 despite the nested while loop. The nested while loop could only iterate nn times across the entire algorithm. 
 Here, the for loop inside the function iterates ee times total across the entire algorithm.
